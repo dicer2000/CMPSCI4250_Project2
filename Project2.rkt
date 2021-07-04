@@ -7,6 +7,8 @@
 ;;
 ;; -----------------------------------------------------------------------------
 ;; 1a
+(display "1a: \n")
+
 (define pi 3.1416)
 
 (define(my_calc val1 val2)
@@ -29,6 +31,7 @@
 ;; -----------------------------------------------------------------------------
 ;; 1b
 ;;(define pi 3.1416)
+(display "1b: \n")
 
 (define(my_calc2 val1 val2)
 
@@ -47,6 +50,7 @@
 
 ;; -----------------------------------------------------------------------------
 ;; 2
+(display "2: \n")
 
 (define(rem_second list_in)
   ;; Check input
@@ -61,6 +65,7 @@
 
 ;; -----------------------------------------------------------------------------
 ;; 3
+(display "3: \n")
 
 (define (membership atm a_list)
   (cond
@@ -69,22 +74,17 @@
        (else (membership atm (cdr a_list)))
  ))
 
-;;(membership 'a '(d c e b))
+(define (my_union list1 list2)
+;;  For debugging
+;;  (print (car list1))
 
-;;(define(union_helper list list)
-
-(define(my_union list1 list2)
-
-;;  (membership (car list1) list2)
-
-;;           ((eqv?  s  (car a_list))  a_list )
-;;            (else  (guess  s  (cdr a_list)))
-
-  (print list1)
-  (if (membership (car list1) list2) ;;'y 'n)
-      (my_union (cdr list1) list2)
-      (my_union (cdr list1) (cons (car list1) list2))
-  )
+  (cond
+    ((null? list2) list1)
+  
+    ((membership (car list2) list1)
+      (my_union list1 (cdr list2)))    ;; Found
+      (else (my_union (cons (car list2) list1) (cdr list2)))  ;; Not found, add
+    )
 )
 
 (my_union `(1 2 3) `(5 1 6))
@@ -93,6 +93,16 @@
 ;; -----------------------------------------------------------------------------
 ;; 4
 
-;;(define(my_delete atm1 list1)
+(define(my_delete atm1 list1)
+
+  (cond
+    ((not (list? list1)) (eq? list1 list2))
+    ((not (list? list2)) #f)
+    ((null? list1) (null? list2))
+    ((null? list2) #f)
+    ((equalLists(car list1) (car list2))
+     (equalLists(cdr list1) (cdr list2)))
+    (else #f)
 
 
+ )
